@@ -50,11 +50,14 @@ align-items:center;
 padding:30px 0;
 }
 
-.logo{
-font-family:"Playfair Display",serif;
-font-size:34px;
-font-weight:700;
-letter-spacing:2px;
+.logo img{
+
+height:70px;
+
+width:auto;
+
+display:block;
+
 }
 
 .logo span{
