@@ -1,174 +1,313 @@
-/* =========================
-   AMERIGO HR CONSULTING - STYLES
-   Mirror brochure visual language: premium typography, generous spacing,
-   navy + gold palette, elegant Playfair headings and Inter body.
-   ========================= */
+/* ==========================================================
+   AMERIGO HR CONSULTING
+   Design System v1
+========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 
 :root{
-  --primary: #132238; /* navy */
-  --secondary: #23415F;
-  --gold: #C9A96A;
-  --gold-dark: #A8844D;
-  --background: #FCFAF6;
-  --white: #FFFFFF;
-  --muted: #6F7682;
-  --border: #E9E5E1;
+
+--navy:#132238;
+--navy-light:#1E3654;
+
+--gold:#C9A96A;
+--gold-dark:#B28B4E;
+
+--cream:#F8F4EF;
+--white:#FFFFFF;
+
+--text:#23313D;
+--text-light:#6B7785;
+
+--radius:18px;
+
+--shadow:
+0 20px 45px rgba(0,0,0,.08);
+
+--transition:.35s ease;
+
+--max-width:1280px;
+
 }
 
-*{box-sizing: border-box; margin:0; padding:0}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-html{scroll-behavior:smooth}
+html{
+
+scroll-behavior:smooth;
+
+}
+
 body{
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  color: var(--primary);
-  background: var(--background);
-  line-height:1.7;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+
+font-family:"Inter",sans-serif;
+
+background:var(--cream);
+
+color:var(--text);
+
+line-height:1.7;
+
+overflow-x:hidden;
+
 }
 
-.container{width:90%; max-width:1200px; margin:0 auto}
+img{
 
-/* -----------------------------
-   NAVIGATION / HEADER
-   ----------------------------- */
-.site-nav{
-  position:fixed; /* sticky across the page */
-  inset:0 0 auto 0; /* top:0 */
-  z-index:60;
-  display:block;
-  width:100%;
-  transition:background-color .4s ease, box-shadow .35s ease, backdrop-filter .35s ease;
+max-width:100%;
+
+display:block;
+
 }
 
-.site-nav .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:20px 0}
+.container{
 
-/* Transparent by default so it sits over the hero */
-.site-nav{background:transparent}
+width:min(92%,var(--max-width));
 
-/* Scrolled/solid state */
-.site-nav.scrolled{ background: rgba(19,34,56,0.9); box-shadow: 0 6px 22px rgba(16,24,32,0.18); backdrop-filter: blur(4px)}
+margin:auto;
 
-nav ul{display:flex; list-style:none; gap:34px; align-items:center}
-nav a{ color:var(--white); text-decoration:none; font-weight:600; font-size:14px; letter-spacing:.6px; text-transform:uppercase; opacity:.95; transition: color .22s ease, transform .18s ease}
-
-/* When nav is over page sections (non-hero) show primary color links */
-.site-nav.scrolled nav a{ color: rgba(255,255,255,0.95) }
-.site-nav.scrolled nav a:hover{ color: var(--gold) }
-
-.logo img{height:90px; width:auto; display:block}
-
-/* CTA in nav */
-nav .cta{ background:var(--gold); color:var(--primary); padding:10px 18px; border-radius:999px; font-weight:700; box-shadow:0 10px 30px rgba(19,34,56,0.12)}
-nav .cta:hover{ background:var(--gold-dark); color:var(--white)}
-
-/* Ensure content below nav isn't hidden */
-:root{ --nav-height: 120px }
-main{ padding-top: var(--nav-height) }
-
-/* -----------------------------
-   HERO
-   ----------------------------- */
-.hero{
-  position:relative;
-  min-height:100vh; /* full-screen */
-  display:flex;
-  align-items:center;
-  color:var(--white);
-  overflow:hidden;
 }
 
-/* Background images (WebP primary) */
-.hero:before{
-  content:"";
-  position:absolute; inset:0;
-  background-image: url('assets/images/hero-1600.webp');
-  background-size:cover; background-position:center right; background-repeat:no-repeat;
-  filter:contrast(.95) saturate(.95);
-  transform:scale(1.02);
-  transition:transform 12s linear; /* slow ken-burns */
-  will-change:transform;
+/* ==========================================================
+HEADER
+========================================================== */
+
+header{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+z-index:999;
+
+background:#132238;
+
+transition:.4s;
+
 }
 
-/* Mobile: use smaller background */
-@media (max-width:800px){
-  .hero:before{ background-image: url('assets/images/hero-800.webp'); background-position:center center }
+header.scrolled{
+
+background:rgba(19,34,56,.95);
+
+backdrop-filter:blur(10px);
+
+box-shadow:0 12px 40px rgba(0,0,0,.15);
+
 }
 
-/* Slight slow zoom for premium feel */
-.hero:hover:before{ transform:scale(1.04) }
+nav{
 
-/* Dark overlay for legibility */
-.hero-overlay{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,18,28,0.55) 0%, rgba(10,18,28,0.55) 50%, rgba(10,18,28,0.6) 100%); }
+height:95px;
 
-.hero .container{ position:relative; z-index:5 }
-.hero-text{ max-width:780px; padding:120px 0 }
+display:flex;
 
-.hero h1{
-  font-family: 'Playfair Display', serif;
-  font-weight:600;
-  font-size:72px; line-height:1.02; color:var(--white);
-  margin-bottom:18px;
-  letter-spacing:-0.02em;
+justify-content:space-between;
+
+align-items:center;
+
 }
 
-.hero p{ font-size:20px; color: rgba(255,255,255,0.92); max-width:640px; margin-bottom:30px }
+.logo img{
 
-.hero .button{ background:var(--gold); color:var(--primary); padding:14px 38px; border-radius:40px; font-weight:700; text-decoration:none; display:inline-block }
-.hero .button:hover{ background:var(--gold-dark); color:var(--white); transform:translateY(-3px) }
+height:92px;
 
-/* Scroll indicator */
-.scroll-indicator{ position:absolute; left:50%; transform:translateX(-50%); bottom:28px; z-index:6; display:block; width:36px; height:56px; }
-.scroll-indicator .chev{ display:block; width:10px; height:10px; border-right:2px solid rgba(255,255,255,0.9); border-bottom:2px solid rgba(255,255,255,0.9); transform:rotate(45deg); margin:0 auto; animation:chev 1.6s infinite }
-@keyframes chev{ 0%{ transform:translateY(-2px) rotate(45deg); opacity:0 } 40%{ transform:translateY(6px) rotate(45deg); opacity:1 } 100%{ transform:translateY(12px) rotate(45deg); opacity:0 } }
+transition:.3s;
 
-/* Entrance animation for hero text */
-.hero-text{ opacity:0; transform:translateY(8px); transition: all .9s cubic-bezier(.2,.9,.2,1) .25s }
-.hero-text.show{ opacity:1; transform:none }
-
-/* -----------------------------
-   SECTIONS (About, Services, Contact)
-   Mirror brochure: generous whitespace, Playfair h2 with gold accents
-   ----------------------------- */
-section{ padding:100px 0; background:transparent }
-
-section .container{ position:relative }
-
-section h2{ font-family:'Playfair Display', serif; color:var(--primary); font-size:44px; margin-bottom:18px }
-section p.lead{ color:var(--muted); font-size:18px; margin-bottom:28px }
-
-/* Cards grid styled to match brochure icons and spacing */
-.grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:36px; margin-top:34px }
-.card{ background:var(--white); padding:34px; border-radius:12px; border:1px solid var(--border); box-shadow:0 12px 30px rgba(16,24,32,0.06) }
-.card h3{ font-family:'Playfair Display', serif; color:var(--primary); margin-bottom:10px }
-.card p{ color:var(--muted); font-size:15px }
-
-/* Icon circle style like brochure */
-.icon-circle{ width:64px; height:64px; border-radius:999px; background:var(--primary); display:flex; align-items:center; justify-content:center; color:var(--gold); margin-right:18px; flex-shrink:0; box-shadow: inset 0 -6px 0 rgba(0,0,0,0.03) }
-
-.card-row{ display:flex; gap:18px; align-items:flex-start }
-
-/* Contact section */
-#contact{ background:var(--primary); color:var(--white); text-align:center }
-#contact .button{ background:var(--gold); color:var(--primary) }
-
-/* Footer */
-footer{ background:var(--primary); color:var(--white); padding:40px 0; text-align:center }
-
-/* -----------------------------
-   Responsive
-   ----------------------------- */
-@media (max-width:1100px){ .grid{ grid-template-columns:repeat(2,1fr) } }
-@media (max-width:800px){
-  .logo img{ height:70px }
-  .grid{ grid-template-columns:1fr }
-  .hero h1{ font-size:36px }
-  .hero-text{ padding:80px 0 }
-  :root{ --nav-height: 110px }
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .hero:before{ transition:none; animation:none }
-  .hero-text, .scroll-indicator .chev{ animation:none; transition:none }
+header.scrolled .logo img{
+
+height:78px;
+
+}
+
+/* MENU */
+
+.menu{
+
+display:flex;
+
+align-items:center;
+
+gap:42px;
+
+list-style:none;
+
+}
+
+.menu a{
+
+text-decoration:none;
+
+font-size:.95rem;
+
+font-weight:600;
+
+letter-spacing:.4px;
+
+color:white;
+
+transition:.3s;
+
+position:relative;
+
+}
+
+.menu a:hover{
+
+color:var(--gold);
+
+}
+
+.menu a::after{
+
+content:"";
+
+position:absolute;
+
+bottom:-8px;
+
+left:0;
+
+width:0;
+
+height:2px;
+
+background:var(--gold);
+
+transition:.3s;
+
+}
+
+.menu a:hover::after{
+
+width:100%;
+
+}
+
+/* CTA */
+
+.cta{
+
+background:var(--gold);
+
+padding:14px 28px;
+
+border-radius:40px;
+
+text-decoration:none;
+
+font-weight:700;
+
+color:white;
+
+transition:.35s;
+
+}
+
+.cta:hover{
+
+background:var(--gold-dark);
+
+transform:translateY(-3px);
+
+}
+
+/* ==========================================================
+SECTIONS
+========================================================== */
+
+section{
+
+padding:110px 0;
+
+}
+
+section:nth-child(even){
+
+background:white;
+
+}
+
+section:nth-child(odd){
+
+background:var(--cream);
+
+}
+
+h1{
+
+font-family:"Playfair Display",serif;
+
+font-size:4rem;
+
+line-height:1.15;
+
+color:white;
+
+margin-bottom:25px;
+
+}
+
+h2{
+
+font-family:"Playfair Display",serif;
+
+font-size:2.6rem;
+
+color:var(--navy);
+
+margin-bottom:25px;
+
+}
+
+h3{
+
+font-size:1.35rem;
+
+margin-bottom:15px;
+
+color:var(--navy);
+
+}
+
+p{
+
+font-size:1.05rem;
+
+color:var(--text-light);
+
+}
+
+/* ==========================================================
+CARDS
+========================================================== */
+
+.card{
+
+background:white;
+
+padding:40px;
+
+border-radius:var(--radius);
+
+box-shadow:var(--shadow);
+
+transition:.35s;
+
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+
 }
