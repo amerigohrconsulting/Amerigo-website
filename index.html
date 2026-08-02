@@ -19,46 +19,45 @@
 
 <div class="container">
 
-<nav>
-<div class="logo">
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="logo" aria-hidden="false">
+    <a href="#home"><img src="logo.png" alt="Amerigo HR Consulting logo"></a>
+  </div>
 
-<img src="logo.png" alt="Amerigo HR Consulting">
-</div>
-
-<ul>
-
-<li><a href="#about">About</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#industries">Industries</a></li>
-<li><a href="#contact">Contact</a></li>
-
-</ul>
-
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="cta">Book a Consultation</a></li>
+  </ul>
 </nav>
 
-<div class="hero">
-
-<div class="hero-text">
-
-<h1>
-Bridging Cultures.<br>
-Building Stronger Organizations.
-</h1>
-
-<p>
-
-Executive Search and HR Consulting for Italian manufacturing companies expanding across North America.
-
-</p>
-
-<a href="#contact" class="button">
-Book a Consultation
-</a>
-
 </div>
 
-</div>
+<div class="hero" id="home">
+  <div class="hero-overlay"></div>
 
+  <div class="container">
+    <div class="hero-text">
+
+      <h1>
+        Bridging Cultures.<br>
+        Building Stronger Organizations.
+      </h1>
+
+      <p>
+        Executive Search and HR Consulting for Italian manufacturing companies expanding across North America.
+      </p>
+
+      <a href="#contact" class="button">Book a Consultation</a>
+
+    </div>
+  </div>
+
+  <a href="#about" class="scroll-indicator" aria-hidden="true">
+    <span class="chev"></span>
+  </a>
 </div>
 
 </header>
@@ -157,6 +156,7 @@ Contact Us
 
 </footer>
 
+<script src="script.js"></script>
 </body>
 
 </html>
