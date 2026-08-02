@@ -1,243 +1,174 @@
 /* =========================
-   AMERIGO HR CONSULTING
+   AMERIGO HR CONSULTING - STYLES
+   Mirror brochure visual language: premium typography, generous spacing,
+   navy + gold palette, elegant Playfair headings and Inter body.
    ========================= */
 
 :root{
-  --primary:#132238; /* Primary */
-  --secondary:#23415F; /* Secondary */
-  --gold:#C9A96A; /* Gold */
-  --gold-dark:#A8844D;
-  --background:#FCFAF6; /* Background */
-  --white:#FFFFFF;
-  --text:#222831;
-  --muted:#6F7682;
-  --border:#E6E7E9;
+  --primary: #132238; /* navy */
+  --secondary: #23415F;
+  --gold: #C9A96A;
+  --gold-dark: #A8844D;
+  --background: #FCFAF6;
+  --white: #FFFFFF;
+  --muted: #6F7682;
+  --border: #E9E5E1;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{box-sizing: border-box; margin:0; padding:0}
 
-html{
-  scroll-behavior:smooth;
-}
-
+html{scroll-behavior:smooth}
 body{
-  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background:var(--background);
-  color:var(--text);
-  line-height:1.75;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: var(--primary);
+  background: var(--background);
+  line-height:1.7;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
 
-.container{
-  width:90%;
-  max-width:1200px;
-  margin:auto;
-}
+.container{width:90%; max-width:1200px; margin:0 auto}
 
-/* Header and navigation */
-header{
-  background:transparent; /* hero will provide color/image */
-  color:var(--white);
-  padding-bottom:0;
-}
-
-nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:26px 0;
-}
-
-.logo img{
-  height:90px; /* increased logo height to ~90px as requested */
-  width:auto;
+/* -----------------------------
+   NAVIGATION / HEADER
+   ----------------------------- */
+.site-nav{
+  position:fixed; /* sticky across the page */
+  inset:0 0 auto 0; /* top:0 */
+  z-index:60;
   display:block;
+  width:100%;
+  transition:background-color .4s ease, box-shadow .35s ease, backdrop-filter .35s ease;
 }
 
-.logo span{
-  display:block;
-  font-family:Inter, sans-serif;
-  font-size:12px;
-  font-weight:600;
-  letter-spacing:4px;
-  color:var(--gold);
-  margin-top:4px;
-}
+.site-nav .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:20px 0}
 
-nav ul{
-  display:flex;
-  list-style:none;
-  gap:32px;
-  align-items:center;
-}
+/* Transparent by default so it sits over the hero */
+.site-nav{background:transparent}
 
-nav a{
-  color:var(--white);
-  text-decoration:none;
-  font-weight:600;
-  letter-spacing:0.6px;
-  text-transform:uppercase;
-  font-size:14px;
-  padding:6px 8px;
-  transition:all .25s ease;
-  opacity:0.95;
-}
+/* Scrolled/solid state */
+.site-nav.scrolled{ background: rgba(19,34,56,0.9); box-shadow: 0 6px 22px rgba(16,24,32,0.18); backdrop-filter: blur(4px)}
 
-nav a:hover{
-  color:var(--gold);
-  transform:translateY(-2px);
-  opacity:1;
-}
+nav ul{display:flex; list-style:none; gap:34px; align-items:center}
+nav a{ color:var(--white); text-decoration:none; font-weight:600; font-size:14px; letter-spacing:.6px; text-transform:uppercase; opacity:.95; transition: color .22s ease, transform .18s ease}
 
-/* Primary CTA in nav (if used) */
-nav .cta{
-  background:var(--gold);
-  color:var(--primary);
-  padding:10px 18px;
-  border-radius:999px;
-  font-weight:700;
-  box-shadow:0 6px 18px rgba(19,34,56,0.12);
-}
+/* When nav is over page sections (non-hero) show primary color links */
+.site-nav.scrolled nav a{ color: rgba(255,255,255,0.95) }
+.site-nav.scrolled nav a:hover{ color: var(--gold) }
 
-/* Hero (kept minimal here - more styles will follow in next commit) */
+.logo img{height:90px; width:auto; display:block}
+
+/* CTA in nav */
+nav .cta{ background:var(--gold); color:var(--primary); padding:10px 18px; border-radius:999px; font-weight:700; box-shadow:0 10px 30px rgba(19,34,56,0.12)}
+nav .cta:hover{ background:var(--gold-dark); color:var(--white)}
+
+/* Ensure content below nav isn't hidden */
+:root{ --nav-height: 120px }
+main{ padding-top: var(--nav-height) }
+
+/* -----------------------------
+   HERO
+   ----------------------------- */
 .hero{
-  padding:120px 0;
+  position:relative;
+  min-height:100vh; /* full-screen */
   display:flex;
   align-items:center;
-  min-height:70vh;
+  color:var(--white);
+  overflow:hidden;
 }
+
+/* Background images (WebP primary) */
+.hero:before{
+  content:"";
+  position:absolute; inset:0;
+  background-image: url('assets/images/hero-1600.webp');
+  background-size:cover; background-position:center right; background-repeat:no-repeat;
+  filter:contrast(.95) saturate(.95);
+  transform:scale(1.02);
+  transition:transform 12s linear; /* slow ken-burns */
+  will-change:transform;
+}
+
+/* Mobile: use smaller background */
+@media (max-width:800px){
+  .hero:before{ background-image: url('assets/images/hero-800.webp'); background-position:center center }
+}
+
+/* Slight slow zoom for premium feel */
+.hero:hover:before{ transform:scale(1.04) }
+
+/* Dark overlay for legibility */
+.hero-overlay{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,18,28,0.55) 0%, rgba(10,18,28,0.55) 50%, rgba(10,18,28,0.6) 100%); }
+
+.hero .container{ position:relative; z-index:5 }
+.hero-text{ max-width:780px; padding:120px 0 }
 
 .hero h1{
-  font-family:"Playfair Display", serif;
-  font-size:64px;
-  line-height:1.05;
-  margin-bottom:24px;
-  max-width:780px;
-  color:var(--white);
+  font-family: 'Playfair Display', serif;
+  font-weight:600;
+  font-size:72px; line-height:1.02; color:var(--white);
+  margin-bottom:18px;
+  letter-spacing:-0.02em;
 }
 
-.hero p{
-  font-size:20px;
-  color:rgba(255,255,255,.9);
-  max-width:680px;
-  margin-bottom:36px;
+.hero p{ font-size:20px; color: rgba(255,255,255,0.92); max-width:640px; margin-bottom:30px }
+
+.hero .button{ background:var(--gold); color:var(--primary); padding:14px 38px; border-radius:40px; font-weight:700; text-decoration:none; display:inline-block }
+.hero .button:hover{ background:var(--gold-dark); color:var(--white); transform:translateY(-3px) }
+
+/* Scroll indicator */
+.scroll-indicator{ position:absolute; left:50%; transform:translateX(-50%); bottom:28px; z-index:6; display:block; width:36px; height:56px; }
+.scroll-indicator .chev{ display:block; width:10px; height:10px; border-right:2px solid rgba(255,255,255,0.9); border-bottom:2px solid rgba(255,255,255,0.9); transform:rotate(45deg); margin:0 auto; animation:chev 1.6s infinite }
+@keyframes chev{ 0%{ transform:translateY(-2px) rotate(45deg); opacity:0 } 40%{ transform:translateY(6px) rotate(45deg); opacity:1 } 100%{ transform:translateY(12px) rotate(45deg); opacity:0 } }
+
+/* Entrance animation for hero text */
+.hero-text{ opacity:0; transform:translateY(8px); transition: all .9s cubic-bezier(.2,.9,.2,1) .25s }
+.hero-text.show{ opacity:1; transform:none }
+
+/* -----------------------------
+   SECTIONS (About, Services, Contact)
+   Mirror brochure: generous whitespace, Playfair h2 with gold accents
+   ----------------------------- */
+section{ padding:100px 0; background:transparent }
+
+section .container{ position:relative }
+
+section h2{ font-family:'Playfair Display', serif; color:var(--primary); font-size:44px; margin-bottom:18px }
+section p.lead{ color:var(--muted); font-size:18px; margin-bottom:28px }
+
+/* Cards grid styled to match brochure icons and spacing */
+.grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:36px; margin-top:34px }
+.card{ background:var(--white); padding:34px; border-radius:12px; border:1px solid var(--border); box-shadow:0 12px 30px rgba(16,24,32,0.06) }
+.card h3{ font-family:'Playfair Display', serif; color:var(--primary); margin-bottom:10px }
+.card p{ color:var(--muted); font-size:15px }
+
+/* Icon circle style like brochure */
+.icon-circle{ width:64px; height:64px; border-radius:999px; background:var(--primary); display:flex; align-items:center; justify-content:center; color:var(--gold); margin-right:18px; flex-shrink:0; box-shadow: inset 0 -6px 0 rgba(0,0,0,0.03) }
+
+.card-row{ display:flex; gap:18px; align-items:flex-start }
+
+/* Contact section */
+#contact{ background:var(--primary); color:var(--white); text-align:center }
+#contact .button{ background:var(--gold); color:var(--primary) }
+
+/* Footer */
+footer{ background:var(--primary); color:var(--white); padding:40px 0; text-align:center }
+
+/* -----------------------------
+   Responsive
+   ----------------------------- */
+@media (max-width:1100px){ .grid{ grid-template-columns:repeat(2,1fr) } }
+@media (max-width:800px){
+  .logo img{ height:70px }
+  .grid{ grid-template-columns:1fr }
+  .hero h1{ font-size:36px }
+  .hero-text{ padding:80px 0 }
+  :root{ --nav-height: 110px }
 }
 
-.button{
-  display:inline-block;
-  background:var(--gold);
-  color:var(--primary);
-  padding:14px 34px;
-  border-radius:40px;
-  text-decoration:none;
-  font-weight:700;
-  transition:all .28s ease;
-}
-
-.button:hover{
-  background:var(--gold-dark);
-  color:var(--white);
-  transform:translateY(-3px);
-}
-
-section{
-  padding:100px 0;
-}
-
-section h2{
-  font-family:"Playfair Display",serif;
-  font-size:38px;
-  margin-bottom:30px;
-  color:var(--primary);
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-  margin-top:34px;
-}
-
-.card{
-  background:var(--white);
-  padding:34px;
-  border-radius:18px;
-  border:1px solid var(--border);
-  box-shadow:0 10px 30px rgba(16,24,32,.06);
-  transition:transform .28s ease, box-shadow .28s ease;
-}
-
-.card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 30px 60px rgba(16,24,32,.12);
-}
-
-.card h3{
-  margin-bottom:12px;
-  color:var(--primary);
-  font-family:"Playfair Display", serif;
-  font-size:20px;
-}
-
-.card p{
-  color:var(--muted);
-  font-size:15px;
-}
-
-#contact{
-  background:var(--primary);
-  color:var(--white);
-  text-align:center;
-}
-
-#contact h2{
-  color:var(--white);
-}
-
-#contact p{
-  max-width:680px;
-  margin:auto;
-  margin-bottom:30px;
-  color:rgba(255,255,255,.9);
-}
-
-footer{
-  background:var(--primary);
-  color:var(--white);
-  text-align:center;
-  padding:36px 0;
-  font-size:14px;
-}
-
-/* Responsive */
-@media(max-width:900px){
-  nav{
-    flex-direction:column;
-    gap:18px;
-    align-items:center;
-  }
-
-  nav ul{
-    flex-wrap:wrap;
-    justify-content:center;
-  }
-
-  .hero{
-    text-align:center;
-  }
-
-  .hero h1{
-    font-size:36px;
-  }
-
-  .hero p{
-    font-size:16px;
-    margin:auto;
-    margin-bottom:28px;
-  }
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .hero:before{ transition:none; animation:none }
+  .hero-text, .scroll-indicator .chev{ animation:none; transition:none }
 }
